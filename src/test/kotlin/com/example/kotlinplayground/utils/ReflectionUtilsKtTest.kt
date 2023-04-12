@@ -1,6 +1,7 @@
 package com.example.kotlinplayground.utils
 
-import com.example.kotlinplayground.NoArg
+import com.example.kotlinplayground.common.annotation.NoArg
+import com.example.kotlinplayground.common.utils.convertObject
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe

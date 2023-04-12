@@ -1,7 +1,7 @@
-package com.example.kotlinplayground.handler
+package com.example.kotlinplayground.common.exception
 
-import com.example.kotlinplayground.exception.ApiException
-import com.example.kotlinplayground.exception.ErrorResponse
+import com.example.kotlinplayground.common.exception.ApiException
+import com.example.kotlinplayground.common.exception.ErrorResponse
 import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.MDC
 import org.springframework.http.ResponseEntity

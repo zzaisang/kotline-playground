@@ -1,4 +1,4 @@
-package com.example.kotlinplayground.utils
+package com.example.kotlinplayground.common.utils
 
 class ReflectionUtils
 

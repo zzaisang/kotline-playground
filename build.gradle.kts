@@ -42,7 +42,7 @@ allOpen {
 
 noArg {
     annotation("jakarta.persistence.Entity")
-    annotation("com.example.kotlinplayground.NoArg")
+    annotation("com.example.kotlinplayground.common.annotation.NoArg")
 }
 
 tasks.withType<KotlinCompile> {

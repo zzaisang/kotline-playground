@@ -1,17 +1,2 @@
 project:
   name: "kotlinplayground"
-
-spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/postgres
-#    username: laon-medi
-#    password: root
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-
-logging:
-  config : classpath:logback.xml
-  level:
-    com.example.kotlinplayground : info

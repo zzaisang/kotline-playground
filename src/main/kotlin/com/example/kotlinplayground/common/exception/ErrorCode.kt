@@ -1,4 +1,4 @@
-package com.example.kotlinplayground.domain
+package com.example.kotlinplayground.common.exception
 
 import org.springframework.http.HttpStatus
 

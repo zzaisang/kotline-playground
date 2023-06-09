@@ -1,6 +1,7 @@
 package com.example.kotlinplayground.utils
 
 import com.example.kotlinplayground.common.annotation.NoArg
+import com.example.kotlinplayground.common.annotation.ReflectionTarget
 import com.example.kotlinplayground.common.utils.convertObject
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
@@ -27,6 +28,17 @@ class ReflectionUtilsKtTest : DescribeSpec({
             }
         }
     }
+
+    describe("복잡한 Dto에 대해서") {
+        context("Reflection을 진행하면 ") {
+            val beforeDto =
+                BeforeComplexDto(listOf(BeforeComplexDetailDto("zzaisang", 32), BeforeComplexDetailDto("zzaisang_999", 100)))
+            it("정상적으로 변환이 된다.") {
+                convertObject<BeforeComplexDto, AfterComplexDto>(beforeDto)
+            }
+        }
+    }
+
 })
 
 data class BeforeDto(
@@ -36,4 +48,25 @@ data class BeforeDto(
 @NoArg
 data class AfterDto(
     val data1: String,
+)
+
+data class BeforeComplexDto(
+    val beforeComplexDetailDtoList: List<BeforeComplexDetailDto>,
+)
+
+@ReflectionTarget(clazz = AfterComplexDetailDto::class)
+data class BeforeComplexDetailDto(
+    val name: String,
+    val age: Int,
+)
+
+@NoArg
+data class AfterComplexDto(
+    val afterComplexDetailDto: AfterComplexDetailDto,
+)
+
+@NoArg
+data class AfterComplexDetailDto(
+    val name: String,
+    val age: Int,
 )

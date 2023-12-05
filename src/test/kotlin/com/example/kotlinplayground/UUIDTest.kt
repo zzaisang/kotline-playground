@@ -7,6 +7,7 @@ import io.kotest.matchers.collections.shouldNotContain
 import io.kotest.matchers.comparables.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 import java.util.*
+import kotlin.system.measureTimeMillis
 
 class UUIDTest : DescribeSpec({
 
@@ -56,6 +57,50 @@ class UUIDTest : DescribeSpec({
                     it("index 4 은 일정한 패턴을 가지지 않는다.") {
                         val newUUIDIndex4 = Generators.timeBasedGenerator().generate().toString().split("-")[4]
                         uuidList.map { it.toString().split("-")[4] }.toList() shouldNotContain newUUIDIndex4
+                    }
+                }
+                context("sequential 한 UUID 를 ") {
+                    it("문자를 조합해서 만들 수 있다.") {
+                        measureTimeMillis {
+                            (1..100000).map {
+                                val uuidParts = Generators.timeBasedGenerator().generate().toString().split("-")
+                                uuidParts[2] + uuidParts[1] + uuidParts[0] + uuidParts[3] + uuidParts[4]
+                            }.toList().size shouldBe 100000
+                        }.apply {
+                            println("sequential UUID 10만건 생성 elapsed time : $this ms")
+                        }
+                    }
+                    it("String Buffer 를 사용해서 만들 수 있다.") {
+                        measureTimeMillis {
+                            (1..100000).map {
+                                val uuidParts = Generators.timeBasedGenerator().generate().toString().split("-")
+                                val stringBuffer = StringBuffer()
+                                stringBuffer.append(uuidParts[2])
+                                stringBuffer.append(uuidParts[1])
+                                stringBuffer.append(uuidParts[0])
+                                stringBuffer.append(uuidParts[3])
+                                stringBuffer.append(uuidParts[4])
+                                stringBuffer.toString()
+                            }.toList().size shouldBe 100000
+                        }.apply {
+                            println("String Buffer sequential UUID 10만건 생성 elapsed time : $this ms")
+                        }
+                    }
+                    it("String Builder 를 사용해서 만들 수 있다.") {
+                        measureTimeMillis {
+                            (1..100000).map {
+                                val uuidParts = Generators.timeBasedGenerator().generate().toString().split("-")
+                                val stringBuilder = StringBuilder()
+                                stringBuilder.append(uuidParts[2])
+                                stringBuilder.append(uuidParts[1])
+                                stringBuilder.append(uuidParts[0])
+                                stringBuilder.append(uuidParts[3])
+                                stringBuilder.append(uuidParts[4])
+                                stringBuilder.toString()
+                            }.toList().size shouldBe 100000
+                        }.apply {
+                            println("String Builder sequential UUID 10만건 생성 elapsed time : $this ms")
+                        }
                     }
                 }
             }

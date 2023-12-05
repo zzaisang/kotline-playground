@@ -35,7 +35,9 @@ class UUIDTest : DescribeSpec({
                 }
                 context("다수를 생성 했을때.") {
                     val uuidList = (1..10).map {
-                        Generators.timeBasedGenerator().generate()
+                        Generators.timeBasedGenerator().generate().apply {
+                            println("$this")
+                        }
                     }.toList()
 
                     it("index 0 의 일정한 패턴이 존재하지 않는다.") {

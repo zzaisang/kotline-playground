@@ -1,2 +1,21 @@
 project:
   name: "kotlinplayground"
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    open-in-view: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/playground
+    username: root
+    password: 1234
+
+logging.level:
+  org.hibernate.type: DEBUG

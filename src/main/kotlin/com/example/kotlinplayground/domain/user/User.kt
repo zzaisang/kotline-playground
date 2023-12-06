@@ -1,13 +1,15 @@
 package com.example.kotlinplayground.domain.user
 
-import com.example.kotlinplayground.common.domain.BaseRootEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Table
+import jakarta.persistence.*
+import java.time.LocalDateTime
 
 @Entity
-@Table(name = "_user")
+@Table(name = "users")
 class User(
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0L,
 
     @Column
     val name: String,
@@ -16,6 +18,6 @@ class User(
 
     val password: String,
 
-    id: Long = 0L,
-) : BaseRootEntity<User>(id) {
-}
+    val createdAt: LocalDateTime = LocalDateTime.now(),
+
+    )

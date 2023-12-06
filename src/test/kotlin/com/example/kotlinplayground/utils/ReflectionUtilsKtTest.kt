@@ -1,8 +1,10 @@
 package com.example.kotlinplayground.utils
 
 import com.example.kotlinplayground.common.annotation.NoArg
-import com.example.kotlinplayground.common.annotation.ReflectionTarget
 import com.example.kotlinplayground.common.utils.convertObject
+import com.example.kotlinplayground.domain.user.UserDetails
+import com.example.kotlinplayground.domain.user.UserInfo
+import com.example.kotlinplayground.`interface`.user.UserResponse
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
@@ -39,6 +41,17 @@ class ReflectionUtilsKtTest : DescribeSpec({
         }
     }
 
+    describe("Test package 외 다른 경로에서 지정시") {
+
+        val userDetails = UserDetails(31, "zzai_sang@laon-medi.com")
+        val userInfo = UserInfo("짜이상", userDetails)
+        context("Reflection 이 ") {
+            it("정상적으로 된다.") {
+                val userResponse = convertObject<UserInfo, UserResponse>(userInfo)
+            }
+        }
+    }
+
 })
 
 data class BeforeDto(
@@ -54,7 +67,7 @@ data class BeforeComplexDto(
     val beforeComplexDetailDtoList: List<BeforeComplexDetailDto>,
 )
 
-@ReflectionTarget(clazz = AfterComplexDetailDto::class)
+//@ReflectionTarget(clazz = AfterComplexDetailDto::class)
 data class BeforeComplexDetailDto(
     val name: String,
     val age: Int,

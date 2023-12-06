@@ -5,5 +5,5 @@ import kotlin.reflect.KClass
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ReflectionTarget(
-    val clazz: KClass<out Any> = Any::class,
+    val clazz: KClass<*>,
 )
